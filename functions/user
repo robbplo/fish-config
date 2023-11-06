@@ -1,3 +1,0 @@
-function retrigger 
-    git pull; git commit --allow-empty -m "Retrigger checks" && git push --force
-end
