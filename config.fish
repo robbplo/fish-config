@@ -1,15 +1,16 @@
-# Starship prompt
-starship init fish | source
+# rtx
+rtx activate fish | source
 
-set -gx EDITOR (which nvim)
-
-source ~/.asdf/asdf.fish
+# brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+set -x BUN_INSTALL "$HOME/.bun"
+#set -x PATH $BUN_INSTALL/bin $PATH
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# global variables
+set -Ux EDITOR (which nvim)
+set -ga XDG_DATA_DIRS $HOME/.nix-profile/share
 
 
 # Abbreviations
@@ -31,10 +32,18 @@ abbr -a -- pr 'gh pr checkout'
 
 ## Programs
 abbr -a -- sail 'bash vendor/bin/sail'
-abbr -a -- art 'php artisan'
+abbr -a -- art 'bash vendor/bin/sail artisan'
 abbr -a -- doco docker-compose
+abbr -a -- vim nvim
 
 ## Utility
 abbr -a -- a 'wl-paste >'
 abbr -a -- yt 'youtube-dl -x --audio-format mp3'
 abbr -a -- mixwatch inotifywait\ -rmq\ --include\ \'\\.\(exs\?\|lua\)\$\'\ -e\ modify\ .\ \|\ mix\ test\ --stale\ --listen-on-stdin
+
+# opam configuration
+source /home/robbin/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
